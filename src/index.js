@@ -16,14 +16,14 @@
 
 'use strict';
 
-var wfJsGrunt = module.exports = {};
+var wfGrunt = module.exports = {};
 
 var _ = require('lodash');
 var settings = require('./settings');
 
 // Build and initialize the grunt configuration from the config files.
-// Override those defaults with the values given in the object passed into wf-js-grunt.
-function initConfig(grunt, wfJsGruntConfig) {
+// Override those defaults with the values given in the object passed into wf-grunt.
+function initConfig(grunt, wfGruntConfig) {
     var config = { settings: settings };
     var files = grunt.file.expand({ cwd: settings.basePath + '/src' }, 'config/*.js');
 
@@ -33,9 +33,9 @@ function initConfig(grunt, wfJsGruntConfig) {
         _.merge(config, taskConfig(settings));
     });
 
-    // Merge in the configuration passed to wf-js-grunt.
+    // Merge in the configuration passed to wf-grunt.
     // Don't include the options.
-    _.merge(config, _.omit(wfJsGruntConfig, 'options'));
+    _.merge(config, _.omit(wfGruntConfig, 'options'));
 
     grunt.initConfig(config);
 }
@@ -46,10 +46,10 @@ function loadTasks(grunt) {
     grunt.file.expand(settings.basePath + '/node_modules/grunt-*/tasks').forEach(grunt.loadTasks);
 }
 
-wfJsGrunt.init = function(grunt, config) {
+wfGrunt.init = function(grunt, config) {
     // Need grunt the be passed in so we can configure the correct context.
     if (!grunt || !grunt.package || grunt.package.name !== 'grunt') {
-        throw new Error('`wfJsGrunt.init()` requires grunt as its first parameter.');
+        throw new Error('`wfGrunt.init()` requires grunt as its first parameter.');
     }
 
     config = config || {};
