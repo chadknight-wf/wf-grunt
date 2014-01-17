@@ -17,9 +17,9 @@
 'use strict';
 
 var grunt = require('grunt');
-var wfJsGrunt = require('../src/index');
+var wfGrunt = require('../src/index');
 
-describe('when wf-js-grunt initializes grunt context', function() {
+describe('when wf-grunt initializes grunt context', function() {
     afterEach(function() {
         // Reset grunt context.
         grunt.task.init([], {});
@@ -27,8 +27,8 @@ describe('when wf-js-grunt initializes grunt context', function() {
 
     describe('config', function() {
 
-        it('should not have `options` property from wf-js-grunt config', function() {
-            wfJsGrunt.init(grunt, {
+        it('should not have `options` property from wf-grunt config', function() {
+            wfGrunt.init(grunt, {
                 options: {
                     not: 'merged'
                 }
@@ -37,12 +37,12 @@ describe('when wf-js-grunt initializes grunt context', function() {
             expect(grunt.config('options')).toBeUndefined();
         });
 
-        it('should have custom properties from wf-js-grunt config', function() {
+        it('should have custom properties from wf-grunt config', function() {
             var customConfig = {
                 property: 'merged'
             };
 
-            wfJsGrunt.init(grunt, {
+            wfGrunt.init(grunt, {
                 custom: customConfig
             });
 
@@ -61,7 +61,7 @@ describe('when wf-js-grunt initializes grunt context', function() {
             'watch'
         ].forEach(function(task) {
             it('should have `' + task + '` property', function() {
-                wfJsGrunt.init(grunt);
+                wfGrunt.init(grunt);
                 expect(grunt.config(task)).toBeDefined();
             });
         });
@@ -69,7 +69,7 @@ describe('when wf-js-grunt initializes grunt context', function() {
 
     describe('tasks', function() {
         beforeEach(function() {
-            wfJsGrunt.init(grunt);
+            wfGrunt.init(grunt);
         });
 
         [
@@ -85,7 +85,7 @@ describe('when wf-js-grunt initializes grunt context', function() {
             'test'
         ].forEach(function(task) {
             it('should include `' + task + '` task', function() {
-                wfJsGrunt.init(grunt);
+                wfGrunt.init(grunt);
                 expect(grunt.task._tasks[task]).toBeDefined();
             });
         });

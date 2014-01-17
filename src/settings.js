@@ -29,7 +29,7 @@ var files = {
     docsReadme: 'docs/README.md',
     gruntfile: 'Gruntfile.js',
     index: 'index.html',
-    requireConfigKarma: '.grunt/wf-js-grunt/require-karma.config.js',
+    requireConfigKarma: '.grunt/wf-grunt/require-karma.config.js',
     testRunner: '_test.runner.html'
 };
 

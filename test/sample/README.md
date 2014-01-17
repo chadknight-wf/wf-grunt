@@ -1,2 +1,2 @@
-Sample Usage of wf-js-grunt
-===========================
+Sample Usage of wf-grunt
+========================
